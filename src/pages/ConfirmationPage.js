@@ -1,9 +1,14 @@
 import React from 'react'
+import {TextField} from '@material-ui/core'
 
 function ConfirmationPage() {
     return (
         <div>
-            <p>ConfirmationPage</p>
+             <TextField
+                name="password"
+                lable="Password"
+                type="password"
+                />
         </div>
     )
 }
