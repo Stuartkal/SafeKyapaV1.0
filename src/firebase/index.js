@@ -42,21 +42,23 @@ export default class Firebase {
 			.catch(error => console.log(error));
 	};
 
-	storeFile = file => {
+	storeFile = async file => {
 		const storageRef = firebase.storage().ref();
 
 		const fileRef = storageRef.child(`files/${file.name + Date.now()}`);
 
-		fileRef
+		const path = await fileRef
 			.put(file)
 			.then(() => {
-				fileRef
+				return fileRef
 					.getDownloadURL()
-					.then(url => console.log(url))
+					.then(url => url)
 					.catch(error => console.log(error));
 			})
 			.catch(error =>
 				console.log("There was an error uploading the file")
 			);
+
+		return path;
 	};
 }

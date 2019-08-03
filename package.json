@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.3.0",
     "@material-ui/icons": "^4.2.1",
+    "bcrypt": "^3.0.6",
     "bootstrap": "^4.3.1",
     "dom": "0.0.3",
     "firebase": "^6.3.4",
