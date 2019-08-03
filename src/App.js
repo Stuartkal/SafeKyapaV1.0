@@ -1,15 +1,13 @@
 import React from 'react';
-import {BrowserRouter as Router} from 'react-router-dom'
-import Sidebar from './components/Sidebar/Sidebar'
-import './App.css';
+import PageRouter from './PageRouter'
 
 function App() {
   return (
-    <Router>
+    
     <div>
-      <Sidebar/>
+      <PageRouter/>
     </div>
-    </Router>
+    
   );
 }
 
