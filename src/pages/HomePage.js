@@ -1,10 +1,11 @@
 import React from 'react'
 
+
 export default function HomePage() {
     return (
-        <div>
-
-            <p>Home HomePage</p>
+        <div className="home">
+                
+        
         </div>
     )
 }
