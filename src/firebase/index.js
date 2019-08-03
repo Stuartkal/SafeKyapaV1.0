@@ -6,7 +6,7 @@ firebase.initializeApp(firebaseConfig);
 
 export default class Firebase {
 	registerTitle = title => {
-		this.titleRef = firebase
+		return firebase
 			.firestore()
 			.collection("Titles")
 			.doc()
@@ -32,14 +32,25 @@ export default class Firebase {
 		return data;
 	};
 
-	transferTitle = title => {
-		this.pendingTitleRef = firebase
-			.firestore()
-			.collection("PendingTransactions")
-			.doc()
-			.set(title)
-			.then(() => console.log("Transfer initiated"))
-			.catch(error => console.log(error));
+	transferTitle = async title => {
+		const titleToBeTransferred = await this.searchTitle({
+			district: title.district,
+			county: title.county,
+			plotNumber: title.plotNumber,
+			blockNumber: title.blockNumber,
+		});
+
+		if (titleToBeTransferred) {
+			titleToBeTransferred.forEach(doc => {
+				return firebase
+					.firestore()
+					.collection("PendingTransactions")
+					.doc()
+					.set({ ...title, orginalTitleId: doc.id })
+					.then(() => console.log("Transfer initiated"))
+					.catch(error => console.log(error));
+			});
+		}
 	};
 
 	storeFile = async file => {
