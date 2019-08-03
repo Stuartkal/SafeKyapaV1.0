@@ -15,8 +15,8 @@ export default class Firebase {
 			.catch(error => console.log(error));
 	};
 
-	searchTitle = title => {
-		const data = firebase
+	searchTitle = async title => {
+		const data = await firebase
 			.firestore()
 			.collection("Titles")
 			.where("district", "==", title.district)
@@ -25,7 +25,7 @@ export default class Firebase {
 			.where("blockNumber", "==", title.blockNumber)
 			.get()
 			.then(querySnapshot => {
-				return querySnapshot.forEach(doc => doc.data());
+				return querySnapshot;
 			})
 			.catch(error => console.log(error));
 
