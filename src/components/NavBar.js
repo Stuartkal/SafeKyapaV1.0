@@ -1,30 +1,26 @@
 import React from 'react'
-import { AppBar, Toolbar, Button } from "@material-ui/core"
+import { AppBar, Toolbar} from "@material-ui/core"
 import { Link } from "react-router-dom"
+import '.././pages/theme.css'
 
 export default function NavBar() {
     return (
         <AppBar position="relative">
-                <Toolbar>
-                    <Link to="/">
-                    <Button>
+                <Toolbar  className="header">
+                    <Link className="links" to="/">
+                    
                         Home
-                    </Button>
+                    
                     </Link>
-                    <Link to="/register">
-                    <Button>
-                        Register
-                    </Button>
+                    <Link className="links" to="/register">
+                    
+                        Register/Transfer
+                    
                     </Link>
-                    <Link to="/transfer">
-                    <Button>
-                        Transfer
-                    </Button>
-                    </Link>
-                    <Link to="/search">
-                    <Button>
+                    <Link className="links" to="/search">
+                    
                         Search
-                    </Button>
+                    
                     </Link>
                     
                     </Toolbar>
