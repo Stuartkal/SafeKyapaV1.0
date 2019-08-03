@@ -6,7 +6,7 @@ import '.././pages/theme.css'
 export default function NavBar() {
     return (
         <AppBar position="relative">
-                <Toolbar style={{backgroundColor:'#3CAEA3'}}>
+                <Toolbar  className="header">
                     <Link className="links" to="/">
                     
                         Home
@@ -14,12 +14,7 @@ export default function NavBar() {
                     </Link>
                     <Link className="links" to="/register">
                     
-                        Register
-                    
-                    </Link>
-                    <Link className="links" to="/transfer">
-                    
-                        Transfer
+                        Register/Transfer
                     
                     </Link>
                     <Link className="links" to="/search">

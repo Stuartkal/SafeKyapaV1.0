@@ -5,16 +5,14 @@ import HomePage from './pages/HomePage'
 import RegisterTitlePage from './pages/RegisterTitlePage'
 import SearchPage from './pages/SearchPage'
 import ConfirmationPage from './pages/ConfirmationPage';
-import TransferPage from './pages/TransferPage';
 
 function PageRouter() {
     return (
         <Router>
-            <NavBar />
+            <NavBar  />
             <Route exact path="/" component={HomePage}/>
             <Route  path="/register/" component={RegisterTitlePage}/>
             <Route  path="/confirm/" component={ConfirmationPage}/>
-            <Route  path="/transfer/" component={TransferPage}/>
             <Route  path="/search/" component={SearchPage}/> 
            
         </Router>
