@@ -80,7 +80,7 @@ export class RegisterTitlePage extends Component {
 								marginLeft: "auto",
 								maxWidth: "80%",
 							}}>
-							<h1>Register Land</h1>
+							<h1>Register/Transfer Land</h1>
 							<div>
 								<h3>Personal/Ownership Data</h3>
 								<hr className="separator" />
@@ -268,27 +268,24 @@ export class RegisterTitlePage extends Component {
 										/>
 									</p>
 								</form>
-
-								<Grid container alignItems="center">
-									<Grid item>
-										<Button
+								<p>
+								<Button
 											style={{
 												backgroundColor: "#3CAEA3",
+												marginRight:'50px'
 											}}
 											onClick={this.registerTitle}>
 											Register
 										</Button>
-									</Grid>
-									<Grid item>
-										<Button
+										
+								<Button
 											style={{
 												backgroundColor: "#3CAEA3",
 											}}
 											onClick={this.transferTitle}>
 											Transfer
 										</Button>
-									</Grid>
-								</Grid>
+										</p>
 							</div>
 						</Paper>
 					</Grid>
