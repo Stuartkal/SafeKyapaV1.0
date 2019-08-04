@@ -2,6 +2,10 @@
 	"name": "yonjadashboard2",
 	"version": "0.1.0",
 	"private": true,
+	"engines": {
+		"node":"10.15.0",
+		"npm":"6.4.1"
+	},
 	"homepage": "https://albystein.github.io/safekyapa/",
 	"dependencies": {
 		"@material-ui/core": "^4.3.0",

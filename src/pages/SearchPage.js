@@ -32,6 +32,7 @@ class SearchPage extends Component {
 						<Paper
 							style={{ padding: "10px", marginBottom: "10px" }}>
 							<h3>Search for Title</h3>
+							<form autoComplete="off">
 							<p>
 								<TextField
 									name="district"
@@ -46,6 +47,7 @@ class SearchPage extends Component {
 								/>
 							</p>
 							<p>
+								
 								<TextField
 									name="county"
 									label="county"
@@ -93,6 +95,7 @@ class SearchPage extends Component {
 									Search Title
 								</Button>
 							</p>
+							</form>
 						</Paper>
 						{this.state.data.length !== 0 ? (
 							<Paper style={{ padding: "10px" }}>
