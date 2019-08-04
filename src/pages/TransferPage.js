@@ -7,7 +7,6 @@ import {
 	CircularProgress,
 } from "@material-ui/core";
 import Firebase from "../firebase";
-import { thisExpression } from "@babel/types";
 
 export class TransferPage extends Component {
 	constructor(props) {
