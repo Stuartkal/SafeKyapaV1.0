@@ -5,11 +5,11 @@ import {
 	Select,
 	Button,
 	CircularProgress,
+	LinearProgress,
 	Grid,
 	Paper,
 } from "@material-ui/core";
 import Firebase from "../firebase";
-import { thisExpression } from "@babel/types";
 import "./theme.css";
 
 export class RegisterTitlePage extends Component {
@@ -27,8 +27,8 @@ export class RegisterTitlePage extends Component {
 			blockNumber: "",
 			plotNumber: "",
 			landSize: "",
-			password: "",
 			landType: "Mailo Land",
+			loading: false,
 		};
 		this.firebase = new Firebase();
 	}
@@ -36,6 +36,8 @@ export class RegisterTitlePage extends Component {
 	registerTitle = e => {
 		e.preventDefault();
 
+		this.setState({ loading: true });
+
 		this.firebase
 			.storeFile(this.profilePhotoRef.files[0])
 			.then(photoUrl => {
@@ -44,14 +46,19 @@ export class RegisterTitlePage extends Component {
 					.storeFile(this.landTitleRef.files[0])
 					.then(landTitleFileUrl => {
 						this.setState({ landTitleFileUrl });
+						const data = this.state;
 
-						return this.firebase.registerTitle(this.state);
-					});
+						delete data.loading;
+						this.setState({ loading: false });
+						return this.firebase.registerTitle(data);
+					})
+					.catch(errror => this.setState({ loading: false }));
 			});
 	};
 
 	transferTitle = e => {
 		e.preventDefault();
+		this.setState({ loading: true });
 
 		this.firebase
 			.storeFile(this.profilePhotoRef.files[0])
@@ -61,9 +68,13 @@ export class RegisterTitlePage extends Component {
 					.storeFile(this.landTitleRef.files[0])
 					.then(landTitleFileUrl => {
 						this.setState({ landTitleFileUrl });
+						const data = this.state;
 
-						return this.firebase.transferTitle(this.state);
-					});
+						delete data.loading;
+						this.setState({ loading: false });
+						return this.firebase.transferTitle(data);
+					})
+					.catch(error => this.setState({ loading: false }));
 			});
 	};
 
@@ -71,6 +82,20 @@ export class RegisterTitlePage extends Component {
 		return (
 			<center>
 				<Grid container spacing={2}>
+					{this.state.loading && (
+						<div
+							style={{
+								position: "absolute",
+								display: "flex",
+								height: "100%",
+								width: "100%",
+								backgroundColor: "gray",
+								alignItems: "center",
+								justifyContent: "center",
+							}}>
+							<CircularProgress />
+						</div>
+					)}
 					<Grid item xs={12} lg={12} md={12} alignItems="center">
 						<Paper
 							style={{
@@ -130,8 +155,8 @@ export class RegisterTitlePage extends Component {
 									<p>
 										<TextField
 											className="textField"
-											name="Incumberace"
-											label="Incumberace"
+											name="Encumberace"
+											label="Encumberace"
 											placeholder="People who have claim on the land(Bank, Relatives)"
 											value={this.state.incumberace}
 											onChange={e =>
@@ -141,7 +166,7 @@ export class RegisterTitlePage extends Component {
 											}
 										/>
 									</p>
-									<p>
+									{/* <p>
 										<TextField
 											className="textField"
 											name="password"
@@ -155,8 +180,8 @@ export class RegisterTitlePage extends Component {
 												})
 											}
 										/>
-									</p>
-									Upload Photo
+									</p> */}
+									Upload photo of land title holder
 									<input
 										type="file"
 										name="profile-photo"
@@ -175,7 +200,7 @@ export class RegisterTitlePage extends Component {
 											value={this.state.district}
 											onChange={e =>
 												this.setState({
-													district: e.target.value,
+													district: e.target.value.toLowerCase(),
 												})
 											}
 										/>
@@ -189,7 +214,7 @@ export class RegisterTitlePage extends Component {
 											value={this.state.county}
 											onChange={e =>
 												this.setState({
-													county: e.target.value,
+													county: e.target.value.toLowerCase(),
 												})
 											}
 										/>
@@ -269,23 +294,23 @@ export class RegisterTitlePage extends Component {
 									</p>
 								</form>
 								<p>
-								<Button
-											style={{
-												backgroundColor: "#3CAEA3",
-												marginRight:'50px'
-											}}
-											onClick={this.registerTitle}>
-											Register
-										</Button>
-										
-								<Button
-											style={{
-												backgroundColor: "#3CAEA3",
-											}}
-											onClick={this.transferTitle}>
-											Transfer
-										</Button>
-										</p>
+									<Button
+										style={{
+											backgroundColor: "#3CAEA3",
+											marginRight: "50px",
+										}}
+										onClick={this.registerTitle}>
+										Register
+									</Button>
+
+									<Button
+										style={{
+											backgroundColor: "#3CAEA3",
+										}}
+										onClick={this.transferTitle}>
+										Transfer
+									</Button>
+								</p>
 							</div>
 						</Paper>
 					</Grid>
